@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.location.Address;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
+
+import static com.pluralsight.candycoded.DetailActivity.SHARE_DESCRIPTION;
 
 public class InfoActivity extends AppCompatActivity {
 
@@ -45,6 +49,20 @@ public class InfoActivity extends AppCompatActivity {
     }
 
     // ***
-    // TODO - Task 3 - Launch the Phone Activity
-    // ***
-}
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+    private void createShareIntent () {
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "mCandyImageUrl");
+        startActivity(Intent.createChooser(shareIntent, "Share images to.."));
+    }
+
+    }
+
+
